@@ -163,7 +163,7 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
   // ---- Done state ----
   if (ws.phase === 'done') {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
+      <div className="flex flex-col items-center justify-center min-h-safe px-6 text-center">
         <div className="text-6xl mb-6">🎉</div>
         <h2 className="text-huge text-white mb-2">训练完成！</h2>
         <p className="text-lg text-slate-400 mb-2">{planName}</p>
@@ -189,7 +189,7 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
   // ---- Load check ----
   if (!currentEx) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-safe">
         <p className="text-slate-400">加载中...</p>
       </div>
     );
@@ -198,8 +198,8 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
   // ---- Rest Timer overlay ----
   if (showTimer && ws.phase === 'rest') {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-900">
-        <div className="bg-slate-800 px-4 py-3 flex items-center justify-between">
+      <div className="flex flex-col min-h-safe bg-slate-900">
+        <div className="bg-slate-800 px-4 py-3 pt-safe flex items-center justify-between">
           <button onClick={onExit} className="text-slate-400 text-lg active:text-white">
             ← 退出
           </button>
@@ -232,8 +232,8 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
   // ---- Stretch timer overlay ----
   if (showTimer && isTimedExercise && ws.phase === 'active') {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-900">
-        <div className="bg-slate-800 px-4 py-3 flex items-center justify-between">
+      <div className="flex flex-col min-h-safe bg-slate-900">
+        <div className="bg-slate-800 px-4 py-3 pt-safe flex items-center justify-between">
           <button onClick={() => { timer.reset(); setShowTimer(false); }} className="text-slate-400 text-lg">
             ← 返回
           </button>
@@ -259,7 +259,7 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
   // ---- Water tip overlay ----
   if (waterTip) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-900 items-center justify-center px-8 text-center">
+      <div className="flex flex-col min-h-safe bg-slate-900 items-center justify-center px-8 text-center">
         <div className="text-6xl mb-6">💧</div>
         <h2 className="text-huge text-white mb-3">喝口水吧</h2>
         <p className="text-lg text-slate-400 mb-4">
@@ -292,9 +292,9 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
       : COOLDOWN.length;
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
+    <div className="flex flex-col min-h-safe bg-slate-900">
       {/* Top bar */}
-      <div className="bg-slate-800 px-4 py-3 flex items-center justify-between">
+      <div className="bg-slate-800 px-4 py-3 pt-safe flex items-center justify-between">
         <button onClick={onExit} className="text-slate-400 text-lg active:text-white">
           ← 退出
         </button>
