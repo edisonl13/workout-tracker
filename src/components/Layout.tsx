@@ -15,24 +15,17 @@ const TABS: { key: Tab; label: string; icon: string }[] = [
   { key: 'calendar', label: '打卡', icon: '📅' },
 ];
 
-const HEADER_PT = { paddingTop: 'max(0.75rem, env(safe-area-inset-top, 0px))' };
-const NAV_PB = { paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))' };
-
 export default function Layout({ activeTab, onTabChange, children }: Props) {
   return (
     <div className="min-h-safe flex flex-col bg-slate-900">
-      <header
-        className="bg-slate-800 border-b border-slate-700 px-4 py-3 sticky top-0 z-10"
-        style={HEADER_PT}
-      >
+      <header className="bg-slate-800 border-b border-slate-700 px-4 pb-3 pt-safe sticky top-0 z-10">
         <h1 className="text-xl font-bold text-center text-white tracking-wider">体态重塑</h1>
       </header>
       <main className="flex-1 pb-20 overflow-y-auto">
         {children}
       </main>
       <nav
-        className="fixed bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 px-2 py-1 flex justify-around z-20"
-        style={NAV_PB}
+        className="fixed bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 px-2 py-1 pb-safe flex justify-around z-20"
       >
         {TABS.map(t => (
           <button

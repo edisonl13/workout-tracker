@@ -18,18 +18,22 @@
     @apply bg-slate-900 text-white antialiased;
     overscroll-behavior: none;
   }
+}
 
-  /* Safe area for notched phones */
-  .pt-safe {
-    padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
-  }
-  .pb-safe {
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
-  }
-  .min-h-safe {
-    min-height: -webkit-fill-available;
-    min-height: 100dvh;
-  }
+/* === Safe area for notched phones ===
+   Must be OUTSIDE any @layer so they override Tailwind utility classes (like py-3).
+   Unlayered styles always win over layered styles in CSS cascade. */
+.pt-safe {
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+  padding-top: calc(1.5rem + constant(safe-area-inset-top, 0px));
+}
+.pb-safe {
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(0.5rem + constant(safe-area-inset-bottom, 0px));
+}
+.min-h-safe {
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
 }
 
 /* Custom scrollbar */
@@ -49,7 +53,6 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
-
 .animate-pulse-red {
   animation: pulse-red 0.5s ease-in-out infinite;
 }
