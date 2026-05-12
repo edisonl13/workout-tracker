@@ -18,24 +18,28 @@ export default function ExerciseDemoModal({ exercise, weight, onClose }: Props) 
   const hasGif = !!exercise.gifUrl;
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/95 flex flex-col" onClick={onClose}>
-      {/* Header */}
-      <div className="bg-slate-800 px-4 py-3 flex items-center justify-between shrink-0">
+    <div
+      className="fixed inset-0 z-50 bg-slate-950/95 flex flex-col overscroll-none"
+      style={{ overscrollBehavior: 'none' }}
+    >
+      {/* Header — pt-safe for notch */}
+      <div className="bg-slate-800 px-4 pt-safe pb-3 flex items-center justify-between shrink-0">
         <button
           onClick={onClose}
-          className="text-slate-400 text-2xl active:text-white w-10 h-10 flex items-center justify-center"
+          className="text-slate-400 text-2xl active:text-white min-w-[44px] min-h-[44px] flex items-center justify-center -ml-1"
         >
           ✕
         </button>
-        <span className="text-white text-lg font-bold">{exercise.name}</span>
-        <span className="text-xs px-2 py-1 rounded-full bg-amber-900/50 text-amber-400 font-medium">
+        <span className="text-white text-lg font-bold truncate mx-2">{exercise.name}</span>
+        <span className="text-xs px-2 py-1 rounded-full bg-amber-900/50 text-amber-400 font-medium shrink-0">
           {fmtEquipment(exercise, weight)}
         </span>
       </div>
 
-      {/* Content */}
+      {/* Content — no bounce */}
       <div
-        className="flex-1 overflow-y-auto px-4 py-6"
+        className="flex-1 overflow-y-auto px-4 py-6 overscroll-none"
+        style={{ overscrollBehavior: 'none', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >
         {/* GIF / Visual */}
@@ -102,12 +106,19 @@ export default function ExerciseDemoModal({ exercise, weight, onClose }: Props) 
           </ol>
         </div>
 
-        {/* No GIF note */}
         {!hasGif && (
           <p className="text-slate-600 text-sm text-center mt-8">
             暂无动作示范GIF，请仔细阅读文字要领
           </p>
         )}
+
+        {/* Bottom close button for easy reach */}
+        <button
+          onClick={onClose}
+          className="w-full bg-surface-light text-white text-lg font-bold py-4 rounded-xl mt-8 mb-4 active:scale-95"
+        >
+          关闭
+        </button>
       </div>
     </div>
   );

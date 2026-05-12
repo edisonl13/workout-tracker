@@ -241,7 +241,7 @@ export default function ActiveWorkout({ plan, planName, onExit }: Props) {
           <span className="text-slate-400">{currentEx.durationSeconds}秒</span>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center">
-          <TimerDisplay seconds={timer.seconds} running={timer.running} label="保持呼吸，不要憋气" />
+          <TimerDisplay seconds={timer.seconds} running={timer.running} label="保持呼吸，不要憋气" total={currentEx.durationSeconds} />
           {phase === 'cooldown' && (
             <p className="text-blue-400 text-sm mt-4">🧘 这是训练后拉伸，帮助肌肉恢复</p>
           )}

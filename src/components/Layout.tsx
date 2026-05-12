@@ -21,7 +21,10 @@ export default function Layout({ activeTab, onTabChange, children }: Props) {
       <header className="bg-slate-800 border-b border-slate-700 px-4 pb-3 pt-safe sticky top-0 z-10">
         <h1 className="text-xl font-bold text-center text-white tracking-wider">体态重塑</h1>
       </header>
-      <main className="flex-1 pb-20 overflow-y-auto">
+      <main
+        className="flex-1 pb-20 overflow-y-auto"
+        style={{ overscrollBehavior: 'none', WebkitOverflowScrolling: 'touch' }}
+      >
         {children}
       </main>
       <nav
